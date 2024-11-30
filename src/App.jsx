@@ -1,23 +1,27 @@
 //App.jsx
+import { useEffect } from 'react'
 import './App.css'
-import { decrementCount, incrementCount } from './redux/reducers/CountSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetchProducts } from './redux/reducer/ProductSlice'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
 function App() {
-  const dispatcher = useDispatch()
-  const count = useSelector((state)=>state.countReducer.count)
+  const dispatch = useDispatch()
+  const products = useSelector((state) => state.productReducer.product)
+
+  useEffect(()=>{
+    fetch('https://raw.githubusercontent.com/sandhyachan/JSON-Files/refs/heads/main/redux/products.json')
+    .then((response)=>response.json())
+    .then((result)=>dispatch(fetchProducts(result)))
+    .catch((err)=> console.log(`Error fetching data ${err}`))
+  },[dispatch])
+
+  console.log(products)
+
 
   return (
     <>
-      <div className='card'>
-        <button onClick={() => dispatcher(incrementCount())}>
-          +
-        </button>
-        <p>{count}</p>
-        <button onClick={() => dispatcher(decrementCount())}>
-          -
-        </button>
-      </div>
     </>
   )
 }

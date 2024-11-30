@@ -1,11 +1,10 @@
-//store.js
 import { configureStore } from "@reduxjs/toolkit";
-import CountSlice from './reducers/CountSlice'
+import ProductSlice from "./reducer/ProductSlice";
 
-const REDUX_STORE = configureStore({
+const productStore = configureStore({
     reducer: {
-        countReducer: CountSlice
+        productReducer: ProductSlice    
     }
 })
 
-export default  REDUX_STORE;
+export default productStore
