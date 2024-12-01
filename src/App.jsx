@@ -6,7 +6,7 @@ import { fetchProducts } from './redux/reducer/ProductSlice'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import Navbar from './components/NavBar';
-import { decrement, increment } from './redux/reducer/CountSlice';
+import { decrement, increment, cartTotal } from './redux/reducer/CountSlice';
 import { cartItem } from './redux/reducer/CountSlice';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   const itemQuantity = useSelector((state) => state.countReducer.count)
   const products = useSelector((state) => state.productReducer.product)
   const totalCartItem = useSelector(cartItem)
-
+  const cartValue = useSelector(cartTotal)
 
   useEffect(()=>{
     fetch('https://raw.githubusercontent.com/sandhyachan/JSON-Files/refs/heads/main/redux/products.json')
@@ -23,13 +23,12 @@ function App() {
     .catch((err)=> console.log(`Error fetching data ${err}`))
   },[dispatch])
 
-
   return (
     <div className='container-fluid'>
       <Navbar/>
       <div className="container my-5">
       <h1 className="text-center mb-2">Products List</h1>
-      <h5 className='text-center mb-4 text-decoration-underline'>NEW MOBILE DEVICES ON SALE!</h5>
+      <h5 className='text-center mb-4 text-decoration-underline'>NEW MOBILE DEVICES ON SALE!!!</h5>
       <div className="row">
         {products.map((product, index) => (
           <div key={product.id} className="col-md-4 d-flex mb-4">
@@ -83,7 +82,7 @@ function App() {
           <h5 className="font-weight-bold">TOTAL:</h5>
         </div>
         <div className="col-6 text-end">
-          <h5 className="font-weight-bold text-success">$0</h5>
+          <h5 className="font-weight-bold text-success">${cartValue}</h5>
         </div>
       </div>
       
