@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from './redux/reducer/ProductSlice'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
-import Navbar from './components/NavBar';
+import Navbar from './components/Navbar';
 import { decrement, increment, cartTotal } from './redux/reducer/CountSlice';
 import { cartItem } from './redux/reducer/CountSlice';
 
