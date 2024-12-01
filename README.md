@@ -47,3 +47,7 @@ This is a simple e-commerce cart app built with **React** and **Redux Toolkit** 
 1. **Product Data**: Products are fetched from an API and stored in Redux.
 2. **Cart Management**: `increment` and `decrement` actions modify the item quantities in the cart.
 3. **Cart Total**: The total number of items is calculated using the `cartItem` selector.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
