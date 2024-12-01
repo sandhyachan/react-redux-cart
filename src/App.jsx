@@ -7,11 +7,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import Navbar from './components/NavBar';
 import { decrement, increment } from './redux/reducer/CountSlice';
+import { cartItem } from './redux/reducer/CountSlice';
 
 function App() {
   const dispatch = useDispatch()
   const itemQuantity = useSelector((state) => state.countReducer.count)
   const products = useSelector((state) => state.productReducer.product)
+  const totalCartItem = useSelector(cartItem)
+
 
   useEffect(()=>{
     fetch('https://raw.githubusercontent.com/sandhyachan/JSON-Files/refs/heads/main/redux/products.json')
@@ -19,8 +22,6 @@ function App() {
     .then((result)=>dispatch(fetchProducts(result)))
     .catch((err)=> console.log(`Error fetching data ${err}`))
   },[dispatch])
-
-  console.log(products)
 
 
   return (
@@ -73,7 +74,7 @@ function App() {
           <h6 className="text-muted">TOTAL CART ITEMS:</h6>
         </div>
         <div className="col-6 text-end">
-          <h6 className="text-primary">0</h6>
+          <h6 className="text-primary">{totalCartItem}</h6>
         </div>
       </div>
 

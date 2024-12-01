@@ -20,5 +20,10 @@ const CountSlice = createSlice({
     }
 })
 
+export const cartItem = (state) => {
+    console.log(state)
+    return state.countReducer.count.reduce((total, quantity)=> total + quantity, 0)
+}
+
 export const {increment, decrement} = CountSlice.actions
 export default CountSlice.reducer
